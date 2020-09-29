@@ -1,0 +1,123 @@
+<template>
+  <div id="app" class="hud" v-if="!playerDead">
+    <div class="container">
+      <div class="hud-person" v-if="showPersonHud">
+        <div class="hud-bar">
+          <b-progress :value="life" type="is-danger" show-value format="percent">
+            vida
+          </b-progress>
+        </div>
+        <div class="hud-bar another-status">
+          <b-progress class="stats" v-if="hunger > 1"  :value="hunger" type="is-warning" show-value format="percent">
+            fome
+          </b-progress>
+          <b-progress class="stats"  v-if="bulletproof > 1" :value="bulletproof" type="is-success" show-value format="percent">
+            colete
+          </b-progress>    
+          <b-progress class="stats" v-if="thirst > 1" :value="thirst" type="is-info" show-value format="percent">
+            sede
+          </b-progress>    
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+
+export default {
+  name: 'app',
+
+  data() {
+    return {
+      showPersonHud: false,
+      life: 0,
+      bulletproof: 0,
+      thirst: 0,
+      hunger: 0,
+      playerDead: false,
+      
+    }
+  },
+  destroyed() {
+    window.removeEventListener('message', this.listener);
+  },
+  mounted() {
+    this.listener = window.addEventListener(
+      'message',
+      event => {
+        const item = event.data;
+
+        if(item.playerDead === true) this.playerDead = true
+
+        if(item.playerDead === false) this.playerDead = false
+
+        if(!item.showPersonHud) this.showPersonHud = true
+
+        if(item.life) this.life = item.life
+        if(item.bulletproof) this.bulletproof = item.bulletproof
+        if(item.hunger) this.hunger = item.hunger
+        if(item.thirst) this.thirst = item.thirst
+
+      },
+      false,
+    );
+  },
+  methods: {},
+};
+</script>
+
+<style lang="scss">
+/* Want nice animations? Check out https://github.com/asika32764/vue2-animate */
+/* @import 'https://unpkg.com/vue2-animate/dist/vue2-animate.min.css'; */
+
+
+html {
+  background: transparent;
+  overflow-y: hidden;
+}
+
+.hud {
+    position: fixed;
+    bottom: 1.125rem;
+    width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hud-person {
+  width: 500px;
+}
+
+.hud-person .icon {
+  height: 0.5rem;
+  width: 0.5rem;
+  fill: black;
+}
+
+.hud-person .another-status .stats {
+  width: 31.2%;
+  float: left;
+  margin: 0.5rem;
+ 
+}
+.hud-person .another-status .stats:first-child {
+   margin-left: 0rem;
+}
+.hud-person .another-status .stats:last-child {
+   margin-right: 0rem;
+}
+
+.gola{fill:#999;}
+.armor{fill:#CCCCCC;}
+
+.hud-person .progress-wrapper:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+
+</style>
