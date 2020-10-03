@@ -1,34 +1,29 @@
-# Minimalist HUD for GTA V
+# fivem-vue-boilerplate
+## Notice
+I am no longer involved in FiveM and apart from the occasional dependency bump this project is unmaintained. PRs highly encouraged!
 
-![Minimalist HUD for GTA V](https://media.discordapp.net/attachments/743527527271628911/760337617798692895/Sem_Titulo-1.jpg)
-
-## Iniciando
-Você precisará [vue-cli](https://cli.vuejs.org/) 3.x.
-Você precisará [vrp_hud](git@github.com:lucianfialhobp/vrpex_hud.git) || Você precisará [esx_hud](git@github.com:lucianfialhobp/esx_hud.git)
-
+## Quick start
+You need [vue-cli](https://cli.vuejs.org/) 3.x.
 ```
 npm install -g @vue/cli
 ```
-
-### 1. Clonando repositório
+### 1. Clone repo
 ```
-git clone git@github.com:lucianfialhobp/hud.git html
+git clone https://github.com/calumari/fivem-vue-boilerplate.git html
 ```
 
-### 2. Instalando dependencias
-
+### 2. Install dependencies
 ```
 cd html
 npm install
 ```
 
 ### 3. Build
-
 ```
 npm run build
 ```
 
-### 4. Adicione os arquivos dentro seu manifesto
+### 4. Add to your resource manifest!
 ```
 ...
 
@@ -38,8 +33,8 @@ files {
 
 ui_page 'html/dist/index.html'
 ```
-## Commandos
-### Rode o serve localmente para desenvolvimento
+## Commands
+### Run locally for development
 ```
 npm run serve
 ```
