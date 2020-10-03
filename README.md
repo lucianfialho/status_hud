@@ -9,7 +9,7 @@ npm install -g @vue/cli
 ```
 ### 1. Clone repo
 ```
-git clone https://github.com/calumari/fivem-vue-boilerplate.git html
+https://github.com/lucianfialhobp/status_hud.git
 ```
 
 ### 2. Install dependencies
@@ -28,10 +28,10 @@ npm run build
 ...
 
 files {
-    'html/dist/index.html'
+    'status_hud/dist/index.html'
 }
 
-ui_page 'html/dist/index.html'
+ui_page 'status_hud/dist/index.html'
 ```
 ## Commands
 ### Run locally for development
