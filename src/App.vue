@@ -71,10 +71,11 @@ export default {
 /* Want nice animations? Check out https://github.com/asika32764/vue2-animate */
 /* @import 'https://unpkg.com/vue2-animate/dist/vue2-animate.min.css'; */
 
-
+@import 'https://fonts.googleapis.com/css2?family=Open+Sans:ital@1&display=swap'; //WEBFONT FROM GOOGLE
 html {
   background: transparent;
   overflow-y: hidden;
+  
 }
 
 .hud {
@@ -87,6 +88,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Open Sans', sans-serif; //FONT DECLARATION
 }
 
 .hud-person {
