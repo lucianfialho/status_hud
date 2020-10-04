@@ -103,8 +103,12 @@ html {
   width: 31.2%;
   float: left;
   margin: 0.5rem;
- 
 }
+
+.hud-person .another-status .stats:only-child {
+  width: 100%;
+}
+
 .hud-person .another-status .stats:first-child {
    margin-left: 0rem;
 }
