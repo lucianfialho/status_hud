@@ -5,8 +5,8 @@ export default {
     /// #endif
 
     /* eslint-disable no-unreachable */
-    // TODO: Fazer ele pegar o nome do resource dinamicamente
-    return await fetch(`http://esx_status_hud/${event}`, {
+
+    return await fetch(`http://${window.GetParentResourceName()}/${event}`, {
       method: 'post',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
