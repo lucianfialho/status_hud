@@ -1,11 +1,12 @@
 export default {
   async send(event, data = {}) {
     /// #if DEBUG
-    return await new Promise(resolve => setTimeout(resolve, 100));
+    // return await new Promise(resolve => setTimeout(resolve, 100));
     /// #endif
 
     /* eslint-disable no-unreachable */
-    return await fetch(`http://<resource>/${event}`, {
+    // TODO: Fazer ele pegar o nome do resource dinamicamente
+    return await fetch(`http://esx_status_hud/${event}`, {
       method: 'post',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',

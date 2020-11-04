@@ -1,6 +1,12 @@
 <template>
   <div id="app" class="hud" v-if="!playerDead">
     <div class="container">
+      {{showPersonHud}}
+      {{life}}
+      {{bulletproof}}
+      {{hunger}}
+      {{thirst}}
+      {{playerDead}}
       <div class="hud-person" v-if="showPersonHud">
         <div class="hud-bar">
           <b-progress :value="life" type="is-danger" show-value format="percent">
@@ -24,7 +30,7 @@
 </template>
 
 <script>
-
+import Nui from './utils/Nui'
 export default {
   name: 'app',
 
@@ -62,8 +68,29 @@ export default {
       },
       false,
     );
+
+    this.loadInterface()
   },
-  methods: {},
+  methods: {
+    async loadInterface () {
+      const response = await Nui.send('esx_status_hud:loadInterface', { loaded: true })
+      const playerInfo = await response.json()
+      
+      if(playerInfo.playerDead) {
+        this.playerDead = true
+        return
+      }
+      
+      window.console.log(playerInfo)
+      
+      this.showPersonHud = true
+      this.life = playerInfo.life
+      this.bulletproof = playerInfo.bulletproof
+      this.hunger = playerInfo.hunger
+      this.thirst = playerInfo.thirst
+    }
+
+  },
 };
 </script>
 
