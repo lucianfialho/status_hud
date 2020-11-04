@@ -1,12 +1,6 @@
 <template>
   <div id="app" class="hud" v-if="!playerDead">
     <div class="container">
-      {{showPersonHud}}
-      {{life}}
-      {{bulletproof}}
-      {{hunger}}
-      {{thirst}}
-      {{playerDead}}
       <div class="hud-person" v-if="showPersonHud">
         <div class="hud-bar">
           <b-progress :value="life" type="is-danger" show-value format="percent">
@@ -121,6 +115,7 @@ html {
 .hud-person {
   width: 500px;
   .another-status {
+    display: flex;
     .stats {
       width: -webkit-fill-available;
       margin: 0.5rem;
