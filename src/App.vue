@@ -106,9 +106,9 @@ html {
 }
 
 .hud {
-    position: fixed;
-    bottom: 1.125rem;
-    width: 100%;
+  position: fixed;
+  bottom: 1.125rem;
+  width: 100%;
 }
 
 .container {
@@ -120,37 +120,23 @@ html {
 
 .hud-person {
   width: 500px;
-}
+  .another-status {
+    .stats {
+      width: -webkit-fill-available;
+      margin: 0.5rem;
+      
+      &:first-child{
+        margin-left: 0rem;
+      }
 
-.hud-person .icon {
-  height: 0.5rem;
-  width: 0.5rem;
-  fill: black;
+      &:last-child{
+        margin-right: 0rem;
+      }
+    }
+  }
+  .progress-wrapper:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
 }
-
-.hud-person .another-status .stats {
-  width: 31.2%;
-  float: left;
-  margin: 0.5rem;
-}
-
-.hud-person .another-status .stats:only-child {
-  width: 100%;
-}
-
-.hud-person .another-status .stats:first-child {
-   margin-left: 0rem;
-}
-.hud-person .another-status .stats:last-child {
-   margin-right: 0rem;
-}
-
-.gola{fill:#999;}
-.armor{fill:#CCCCCC;}
-
-.hud-person .progress-wrapper:not(:last-child) {
-  margin-bottom: 0.5rem;
-}
-
 
 </style>
