@@ -1,21 +1,21 @@
 <template>
   <div id="app" class="hud" v-if="!playerDead">
     <div class="container">
-      <div class="hud-person" v-if="showPersonHud">
+      <div class="hud-person" v-if="showPersonHud" v-bind:style="`width:${hudSize}`">
         <div class="hud-bar">
-          <b-progress :value="life" type="is-danger" show-value format="percent">
-            vida
+          <b-progress :value="life" :size="barWeight" type="is-danger" show-value format="percent">
+            {{labels.life}}
           </b-progress>
         </div>
         <div class="hud-bar another-status">
-          <b-progress class="stats" v-if="hunger > 1"  :value="hunger" type="is-warning" show-value format="percent">
-            fome
+          <b-progress class="stats" :size="barWeight" v-if="hunger > 1"  :value="hunger" type="is-warning" show-value format="percent">
+            {{labels.hunger}}
           </b-progress>
-          <b-progress class="stats"  v-if="bulletproof > 1" :value="bulletproof" type="is-success" show-value format="percent">
-            colete
+          <b-progress class="stats"  :size="barWeight" v-if="bulletproof > 1" :value="bulletproof" type="is-success" show-value format="percent">
+            {{labels.armor}}
           </b-progress>    
-          <b-progress class="stats" v-if="thirst > 1" :value="thirst" type="is-info" show-value format="percent">
-            sede
+          <b-progress class="stats" :size="barWeight" v-if="thirst > 1" :value="thirst" type="is-info" show-value format="percent">
+            {{labels.thirst}}
           </b-progress>    
         </div>
       </div>
@@ -68,20 +68,23 @@ export default {
   methods: {
     async loadInterface () {
       const response = await Nui.send('esx_status_hud:loadInterface', { loaded: true })
-      const playerInfo = await response.json()
+      const hudInfo = await response.json()
       
-      if(playerInfo.playerDead) {
+      if(hudInfo.playerDead) {
         this.playerDead = true
         return
       }
       
-      window.console.log(playerInfo)
+      window.console.log(hudInfo)
       
       this.showPersonHud = true
-      this.life = playerInfo.life
-      this.bulletproof = playerInfo.bulletproof
-      this.hunger = playerInfo.hunger
-      this.thirst = playerInfo.thirst
+      this.life = hudInfo.life
+      this.bulletproof = hudInfo.bulletproof
+      this.hunger = hudInfo.hunger
+      this.thirst = hudInfo.thirst
+      this.hudSize = hudInfo.hudSize
+      this.labels = hudInfo.labels
+      this.barWeight = hudInfo.barWeight
     }
 
   },
@@ -113,7 +116,7 @@ html {
 }
 
 .hud-person {
-  width: 500px;
+
   .another-status {
     display: flex;
     .stats {
