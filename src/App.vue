@@ -75,8 +75,6 @@ export default {
         return
       }
       
-      window.console.log(hudInfo)
-      
       this.showPersonHud = true
       this.life = hudInfo.life
       this.bulletproof = hudInfo.bulletproof
